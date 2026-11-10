@@ -1,0 +1,8 @@
+flask
+python-dotenv
+google-genai
+faiss-cpu
+numpy
+pypdf
+gunicorn
+Flask-Limiter

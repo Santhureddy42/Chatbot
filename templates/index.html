@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <title>Gemini RAG Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+  </head>
+  <body>
+    <main class="chat-shell">
+      <header class="chat-header">
+        <div class="brand-mark" aria-hidden="true">✦</div>
+        <div>
+          <h1>Gemini RAG Assistant</h1>
+          <p>Ask a question and let's explore it together.</p>
+        </div>
+        <span class="status"><span class="status-dot"></span> Ready</span>
+      </header>
+
+      <section
+        id="messages"
+        class="messages"
+        aria-label="Chat messages"
+        aria-live="polite"
+        aria-relevant="additions text"
+      >
+        <article class="message-row assistant-row">
+          <div class="avatar assistant-avatar" aria-hidden="true">✦</div>
+          <div class="message-content">
+            <span class="message-author">Gemini</span>
+            <p class="message-bubble">Hi! I'm your Gemini RAG Assistant. What would you like to know?</p>
+          </div>
+        </article>
+      </section>
+
+      {% if uploads_enabled %}
+      <section class="upload-panel" aria-labelledby="upload-title">
+        <div class="upload-copy">
+          <h2 id="upload-title">Upload a document</h2>
+          <p>Add a PDF or TXT file to the library knowledge base.</p>
+        </div>
+        <form
+          id="upload-form"
+          class="upload-form"
+          action="{{ url_for('upload_document') }}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <label class="sr-only" for="document-file">Choose a PDF or TXT document</label>
+          <input
+            id="document-file"
+            name="file"
+            type="file"
+            accept=".pdf,.txt"
+            required
+          >
+          <button id="upload-button" type="submit">Upload</button>
+        </form>
+        <p id="upload-status" class="upload-status" role="status" aria-live="polite">
+          Select a document to see its filename here.
+        </p>
+      </section>
+      {% endif %}
+
+      <form id="chat-form" class="composer">
+        <label class="sr-only" for="question">Your message</label>
+        <input
+          id="question"
+          name="message"
+          type="text"
+          placeholder="Message Gemini..."
+          autocomplete="off"
+          required
+        >
+        <button id="send-button" type="submit">
+          <span>Send</span>
+          <span class="send-icon" aria-hidden="true">↑</span>
+        </button>
+      </form>
+      <p class="composer-hint">Press Enter to send</p>
+    </main>
+  </body>
+</html>

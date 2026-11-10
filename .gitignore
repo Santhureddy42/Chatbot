@@ -155,9 +155,18 @@ activemq-data/
 .venv
 env/
 venv/
+vector_store/
 ENV/
 env.bak/
 venv.bak/
+
+# Publish only the explicitly approved demo documents
+documents/*
+!documents/library_events.txt
+!documents/library_faq.pdf
+!documents/library_information.txt
+!documents/library_rules.txt
+!documents/sample.txt
 
 # Spyder project settings
 .spyderproject
@@ -218,3 +227,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+.vscode/
